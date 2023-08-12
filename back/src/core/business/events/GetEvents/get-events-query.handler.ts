@@ -1,9 +1,9 @@
-import { IEventRepository } from '@domain/repo/IEventRepository';
-import { GetEventsQuery } from './GetEventsQuery';
-import { Pagination } from '@domain/value-objects/Paagination';
-import { GetEventsResponseItem } from './GetEventsResponse';
-import { AppResult } from '@domain/value-objects/AppResult';
-import { AppError } from '@domain/value-objects/AppError';
+import { IEventRepository } from '@domain/repo/i.event.repository';
+import { GetEventsQuery } from './get-events-query';
+import { Pagination } from '@domain/value-objects/paagination';
+import { GetEventsResponseItem } from './get-events-response';
+import { AppResult } from '@domain/value-objects/app-result';
+import { AppError } from '@domain/value-objects/app-error';
 
 export abstract class IGetEventsQueryHandler {
   abstract execute(

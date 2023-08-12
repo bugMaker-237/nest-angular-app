@@ -1,4 +1,4 @@
-import { ProblemCodes } from './ProblemCodes';
+import { ProblemCodes } from './problem-codes';
 
 export class AppError {
   descriptions: any[];

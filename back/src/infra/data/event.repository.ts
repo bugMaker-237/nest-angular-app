@@ -1,6 +1,6 @@
-import { Event } from '@domain/entities/Event';
-import { IEventRepository } from '@domain/repo/IEventRepository';
-import { ApplicationDbContext } from './ApplicationDbContext';
+import { Event } from '@domain/entities/event';
+import { IEventRepository } from '@domain/repo/i.event.repository';
+import { ApplicationDbContext } from './application-db.context';
 import { IQueryable } from 'slim-ef';
 
 @DependencyInjection.Inject()

@@ -1,4 +1,4 @@
-import { Event } from '@domain/entities/Event';
+import { Event } from '@domain/entities/event';
 import { EntitySchema } from 'typeorm';
 const TABLE_NAME = 'events';
 

@@ -1,11 +1,11 @@
 import {
   GetEventsQueryHandler,
   IGetEventsQueryHandler
-} from '@business/events/GetEvents/GetEventsQueryHandler';
-import { IEventRepository } from '@domain/repo/IEventRepository';
-import { EventRepository } from './data/EventRepository';
-import { GetEventsQuery } from '@business/events/GetEvents/GetEventsQuery';
-import { ApplicationDbContext } from './data/ApplicationDbContext';
+} from '@business/events/GetEvents/get-events-query.handler';
+import { IEventRepository } from '@domain/repo/i.event.repository';
+import { EventRepository } from './data/event.repository';
+import { GetEventsQuery } from '@business/events/GetEvents/get-events-query';
+import { ApplicationDbContext } from './data/application-db.context';
 
 export const GetEventsQueryHandlerProvider = {
   provide: IGetEventsQueryHandler,

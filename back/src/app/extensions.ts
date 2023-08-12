@@ -1,5 +1,5 @@
-import { AppError } from '@domain/value-objects/AppError';
-import { ProblemCodes } from '@domain/value-objects/ProblemCodes';
+import { AppError } from '@domain/value-objects/app-error';
+import { ProblemCodes } from '@domain/value-objects/problem-codes';
 import {
   BadRequestException,
   NotFoundException,
