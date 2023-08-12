@@ -35,13 +35,20 @@ export class AddEventCommandHandler implements IAddEventCommandHandler {
     isValid: boolean;
     error: string;
   } {
+    if (!request) return { error: 'Invalid request', isValid: false };
+
     const endDate = new Date(request.endDate);
     const startDate = new Date(request.startDate);
     let error = '';
-
+    console.log(request);
     if (!(typeof request.name === 'string')) error = 'Name is not a string';
+    if (request.name?.length > 32) error = 'Name is too long';
     if (!(typeof request.description === 'string'))
       error = 'Description is not a string';
+
+    if (!request.endDate) error = 'End date not set';
+    if (!request.startDate) error = 'Start date not set';
+
     if (isNaN(endDate.getDate())) error = 'Incorrect date format for end date';
     if (isNaN(startDate.getDate()))
       error = 'Incorrect date format for start date';

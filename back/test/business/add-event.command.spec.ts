@@ -14,7 +14,7 @@ describe('AddEventCommand', () => {
     );
   });
 
-  it('Should return invalid query params', async () => {
+  it('Should return invalid request params', async () => {
     // arrange
     const request = new AddEventRequest();
 
@@ -23,6 +23,22 @@ describe('AddEventCommand', () => {
 
     expect(res.error).toBeDefined();
     expect(res.error.errorId).toBe(400);
+  });
+
+  it('Should return error for name too long', async () => {
+    // arrange
+    const request = new AddEventRequest();
+    request.description = 'Adesc';
+    request.name = 'A qsd qsdqsd qsdqscxw qsdqc dazdqsd';
+    request.startDate = new Date();
+    request.endDate = new Date(2023, 10, 10);
+
+    // act
+    const res = await handler.execute(request);
+
+    expect(res.error).toBeDefined();
+    expect(res.error.errorId).toBe(400);
+    expect(res.error.descriptions[0]).toBe('Name is too long');
   });
 
   it('Should add event succcessfully', async () => {
@@ -40,6 +56,6 @@ describe('AddEventCommand', () => {
     expect(res.error).toBeUndefined();
     expect(res.result.name).toBe('A request');
     expect(res.result.description).toBe('Adesc');
-    expect(res.result.enDate).toStrictEqual(utcEndDate);
+    expect(res.result.endDate).toStrictEqual(utcEndDate);
   });
 });
