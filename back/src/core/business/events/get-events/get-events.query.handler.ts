@@ -1,7 +1,7 @@
 import { IEventRepository } from '@domain/repo/i.event.repository';
-import { GetEventsQuery } from './get-events-query';
+import { GetEventsQuery } from './get-events.query';
 import { Pagination } from '@domain/value-objects/paagination';
-import { GetEventsResponseItem } from './get-events-response';
+import { GetEventsResponseItem } from './get-events.response';
 import { AppResult } from '@domain/value-objects/app-result';
 import { AppError } from '@domain/value-objects/app-error';
 
@@ -31,7 +31,11 @@ export class GetEventsQueryHandler implements IGetEventsQueryHandler {
     const pageIndex = query.offset / query.numberOfResults;
 
     return AppResult.success(
-      new Pagination(result.data, pageIndex, result.totalCount)
+      new Pagination(
+        result.data.map((e) => new GetEventsResponseItem(e)),
+        pageIndex,
+        result.totalCount
+      )
     );
   }
 

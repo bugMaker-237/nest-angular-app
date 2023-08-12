@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {
+  AddEventCommandHandlerProvider,
   ApplicationDbContextProvider,
   EventRepositoryProvider,
   GetEventsQueryHandlerProvider
@@ -26,6 +27,7 @@ import { DBConnectionProvider } from './config/connection';
     DBConnectionProvider,
     ApplicationDbContextProvider,
     GetEventsQueryHandlerProvider,
+    AddEventCommandHandlerProvider,
     EventRepositoryProvider
   ]
 })

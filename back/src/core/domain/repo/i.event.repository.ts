@@ -1,6 +1,12 @@
 import { Event } from '../entities/event';
 
 export abstract class IEventRepository {
+  abstract addEvent(
+    name: string,
+    description: string,
+    startDate: Date,
+    endDate: Date
+  ): Promise<Event>;
   /**
    * Returns a list of events
    * @param numberOfResults
