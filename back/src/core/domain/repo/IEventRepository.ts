@@ -1,6 +1,12 @@
 import { Event } from '../entities/Event';
 
 export abstract class IEventRepository {
+  /**
+   * Returns a list of events
+   * @param numberOfResults
+   * @param offset
+   * @param searchCriteria
+   */
   abstract getEvents(
     numberOfResults: number,
     offset: number,

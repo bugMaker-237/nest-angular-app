@@ -17,9 +17,14 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
+    "moduleResolution": "node",
 		"paths": {
 			"@domain/*":["src/core/domain/*"],
 			"@business/*":["src/core/business/*"],
-		}
+			"@infra/*":["src/infra/*"],
+			"@api/*":["src/app/*"],
+		},
+		"typeRoots": ["node_modules/@types", "./"],
+		"types": ["jest", "./reference", "node"]
   }
 }
