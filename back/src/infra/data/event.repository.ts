@@ -6,6 +6,20 @@ import { IQueryable } from 'slim-ef';
 @DependencyInjection.Inject()
 export class EventRepository implements IEventRepository {
   constructor(private _context: ApplicationDbContext) {}
+  async addEvent(
+    name: string,
+    description: string,
+    startDate: Date,
+    endDate: Date
+  ): Promise<Event> {
+    await this._context.events.add(
+      Event.create(name, description, startDate, endDate)
+    );
+
+    const { added } = await this._context.saveChanges();
+
+    return added[0] as Event;
+  }
   async getEvents(
     numberOfResults: number,
     offset: number,

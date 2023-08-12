@@ -10,6 +10,7 @@ export const getTestConnection = () => {
     type: 'sqlite',
     database: dbPath,
     entities: [EventEntitySchema],
+    dropSchema: true,
     synchronize: true
   } as SqliteConnectionOptions);
 };

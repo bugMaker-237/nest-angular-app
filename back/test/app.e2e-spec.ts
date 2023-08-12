@@ -29,4 +29,16 @@ describe('AppController (e2e)', () => {
         totalCount: 0
       });
   });
+
+  it('/events (POST)', () => {
+    return request(app.getHttpServer())
+      .post('/events')
+      .send({
+        name: 'AnewEvent',
+        description: 'AnewDesc',
+        startDate: new Date(),
+        endDate: new Date(2024, 10, 1)
+      })
+      .expect(201);
+  });
 });
