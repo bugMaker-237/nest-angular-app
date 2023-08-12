@@ -1,1 +1,27 @@
-<p>new-event works!</p>
+<mat-toolbar>
+	<a routerLink="/" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+		<mat-icon>arrow_back</mat-icon>
+	</a>
+	<h1>Add a new Event</h1>
+</mat-toolbar>
+<div class="container">
+	<form [formGroup]="formGroup" (ngSubmit)="submit()" style="margin-top: 16px;">
+		<mat-form-field appearance="outline">
+			<mat-label>Name</mat-label>
+			<input matInput formControlName="name">
+		</mat-form-field>
+		<mat-form-field appearance="outline">
+			<mat-label>Description</mat-label>
+			<input matInput formControlName="description">
+		</mat-form-field>
+		<mat-form-field appearance="outline">
+			<mat-label>Start date</mat-label>
+			<input matInput #startDate type="datetime-local" formControlName="startDate">
+		</mat-form-field>
+		<mat-form-field appearance="outline">
+			<mat-label>End date</mat-label>
+			<input matInput type="datetime-local" [min]="startDate.value" formControlName="endDate">
+		</mat-form-field>
+		<button mat-raised-button color="primary">Submit</button>
+	</form>
+</div>

@@ -5,12 +5,12 @@ export class GetEventsResponseItem {
     this.name = event.name;
     this.id = event.id;
     this.startDate = event.startDate;
-    this.enDate = event.endDate;
+    this.endDate = event.endDate;
     this.description = event.description;
     this.createdDate = event.createdDate;
   }
   createdDate: Date;
-  enDate: Date;
+  endDate: Date;
   startDate: Date;
   id: string;
   name: string;

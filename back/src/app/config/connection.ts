@@ -12,11 +12,10 @@ export const DBConnectionProvider = {
 
     const connection = new Connection({
       type: 'sqlite',
+      name: 'default',
       database: dbConfig.name,
       entities: [EventEntitySchema],
-      // I think, SQLite doesnot support typeorm sync
-      // not sure about that
-      synchronize: false
+      synchronize: true
     } as SqliteConnectionOptions);
 
     return connection;

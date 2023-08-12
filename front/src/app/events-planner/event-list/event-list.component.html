@@ -1,1 +1,19 @@
-<p>event-list works!</p>
+<mat-toolbar>
+	<h1>Events Planner</h1>
+	<span style="flex:1"></span>
+	<a routerLink="new" mat-icon-button color="warn" aria-label="Example icon button with a heart icon">
+		<mat-icon>add</mat-icon>
+	</a>
+</mat-toolbar>
+<div class="container">
+	<mat-action-list>
+		<div mat-subheader>Events to come</div>
+		<mat-list-item *ngFor="let event of events |async">
+			<mat-icon matListItemIcon>event</mat-icon>
+			<div matListItemTitle>{{event.name}}</div>
+			<div matListItemLine>{{event.description}}</div>
+			<div matListItemLine>{{event.startDate | date:'MMM dd yyyy, hh:mm'}} - {{event.endDate | date:'MMM dd yyyy, hh:mm'}}</div>
+		</mat-list-item>
+		<mat-divider></mat-divider>
+	</mat-action-list>
+</div>
