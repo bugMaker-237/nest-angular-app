@@ -2,16 +2,22 @@ import { IEventRepository } from '@domain/repo/IEventRepository';
 import { GetEventsQuery } from './GetEventsQuery';
 import { Pagination } from '@domain/value-objects/Paagination';
 import { GetEventsResponseItem } from './GetEventsResponse';
-import { AppResult, AppResultWithError } from '@domain/value-objects/AppResult';
+import { AppResult } from '@domain/value-objects/AppResult';
 import { AppError } from '@domain/value-objects/AppError';
 
-export abstract class IGetEventsQueryHandler {}
+export abstract class IGetEventsQueryHandler {
+  abstract execute(
+    query: GetEventsQuery
+  ): Promise<AppResult<Pagination<GetEventsResponseItem>>>;
+}
+
+@DependencyInjection.Inject()
 export class GetEventsQueryHandler implements IGetEventsQueryHandler {
   constructor(private readonly _eventRepo: IEventRepository) {}
 
   public async execute(
     query: GetEventsQuery
-  ): Promise<AppResultWithError<Pagination<GetEventsResponseItem>>> {
+  ): Promise<AppResult<Pagination<GetEventsResponseItem>>> {
     const isValid = this.validate(query);
 
     if (!isValid)
