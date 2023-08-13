@@ -1,0 +1,49 @@
+name: GitHub Container Registry Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli
+
+      - name: Build Angular app
+        run: |
+          cd front
+          npm install
+          ng build --prod
+
+      - name: Build and push NestJS API Docker image
+        run: |
+          cd back
+          docker build -t my-nest-api .
+          docker tag my-nest-api ghcr.io/your-github-username/your-repo-name/api
+
+          # Log in to GitHub Container Registry
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u your-github-username --password-stdin
+
+          # Push the NestJS API Docker image to GitHub Container Registry
+          docker push ghcr.io/your-github-username/your-repo-name/api
+
+      - name: Build and push Angular app Docker image
+        run: |
+          cd front
+          docker build -t my-angular-app .
+          docker tag my-angular-app ghcr.io/your-github-username/your-repo-name/web
+
+          # Push the Angular app Docker image to GitHub Container Registry
+          docker push ghcr.io/your-github-username/your-repo-name/web
